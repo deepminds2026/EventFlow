@@ -1,6 +1,7 @@
 # EventFlow
 Temporal Event Prediction using Machine Learning and Deep Learning (Logistic Regression, MLP, and GRU).
 # Temporal Event Prediction
+# Temporal Event Prediction
 
 **Project Name:** EventFlow  
 **Course:** AI2210 - Deep Learning & Neural Networks  
@@ -78,11 +79,9 @@ Ensure that the following software is installed:
 ### 4.2 Clone the Repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/deepminds2026/EventFlow.git
 cd EventFlow
 ```
-
-Replace `<repository-url>` with the actual URL of the GitHub repository.
 
 ### 4.3 Create a Virtual Environment
 
