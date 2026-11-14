@@ -1,0 +1,134 @@
+EVENTFLOW - PREPROCESSING SUMMARY
+========================================================================
+Created: 2026-11-14 13:57:57
+Project folder: C:\Users\Hp\Downloads\scripts
+
+1. INPUT DATASETS
+Training event rows: 1,203,963
+Training sequences: 6,500
+Test event rows: 138,828
+Test sequences: 900
+Test label rows checked for ID alignment: 900
+Test label values used for fitting: NO
+
+2. NEXT-EVENT TARGET CONSTRUCTION
+Target source column: event_type
+Generated target column: next_event
+Training examples: 1,197,463
+Final sequence events excluded: 6,500
+Number of target classes: 14
+Classes: COMPONENT_REPLACED, CONTROL_ALERT, COOLING_ACTIVATED, COOLING_FAULT, EMERGENCY_STOP, LOAD_DECREASE, LOAD_INCREASE, MAINTENANCE_CHECK, PRESSURE_WARNING, RECOVERY, ROUTINE_CHECK, SENSOR_RESET, TEMP_WARNING, VIBRATION_WARNING
+
+3. VALIDATION SPLIT
+Method: Stratified sequence-level split
+Training sequences: 5,200
+Validation sequences: 1,300
+Training examples: 958,790
+Validation examples: 238,673
+Split unit: sequence_id
+Training/validation sequence overlap: 0
+
+4. MODEL INPUT FEATURES
+Numeric features (20):
+  - event_index
+  - timestamp
+  - severity
+  - shift_code
+  - load_reading
+  - temperature_reading
+  - temp_probe_b
+  - vibration_reading
+  - vibration_probe_b
+  - pressure_reading
+  - power_draw
+  - coolant_flow
+  - control_signal
+  - ambient_index
+  - efficiency_estimate
+  - acoustic_level
+  - telemetry_ch_1
+  - telemetry_ch_3
+  - telemetry_ch_4
+  - telemetry_ch_2
+Categorical features (5):
+  - event_type
+  - subsystem
+  - operator_group
+  - device_family
+  - firmware_channel
+Encoded feature count: 53
+sequence_id excluded from model inputs.
+next_event excluded from model inputs.
+
+5. MISSING VALUE HANDLING
+Numeric columns: median imputation.
+Categorical columns: most-frequent imputation.
+Imputers fitted on training split only.
+Missing-value rows were not deleted.
+
+6. ENCODING AND SCALING
+Categorical columns: OneHotEncoder.
+Unknown categories: ignored by encoder.
+Numeric columns: StandardScaler.
+Scaler and encoders fitted on training split only.
+
+7. PROCESSED MATRIX SHAPES
+X_train: 958,790 rows x 53 features
+X_validation: 238,673 rows x 53 features
+X_test: 900 rows x 53 features
+y_train: (958790,)
+y_validation: (238673,)
+Test matrix: final observed event from each test sequence.
+
+8. TRAINING TARGET DISTRIBUTION
+             Class  Count  Percentage
+COMPONENT_REPLACED  48252       5.033
+     CONTROL_ALERT   8892       0.927
+ COOLING_ACTIVATED  53135       5.542
+     COOLING_FAULT  97747      10.195
+    EMERGENCY_STOP  40622       4.237
+     LOAD_DECREASE  21729       2.266
+     LOAD_INCREASE  34532       3.602
+ MAINTENANCE_CHECK 131600      13.726
+  PRESSURE_WARNING  13683       1.427
+          RECOVERY 255797      26.679
+     ROUTINE_CHECK  11285       1.177
+      SENSOR_RESET  17005       1.774
+      TEMP_WARNING 120229      12.540
+ VIBRATION_WARNING 104282      10.876
+
+9. VALIDATION TARGET DISTRIBUTION
+             Class  Count  Percentage
+COMPONENT_REPLACED  12193       5.109
+     CONTROL_ALERT   2286       0.958
+ COOLING_ACTIVATED  13178       5.521
+     COOLING_FAULT  24665      10.334
+    EMERGENCY_STOP  10154       4.254
+     LOAD_DECREASE   5441       2.280
+     LOAD_INCREASE   8673       3.634
+ MAINTENANCE_CHECK  32516      13.624
+  PRESSURE_WARNING   3458       1.449
+          RECOVERY  63325      26.532
+     ROUTINE_CHECK   3010       1.261
+      SENSOR_RESET   4306       1.804
+      TEMP_WARNING  29950      12.549
+ VIBRATION_WARNING  25518      10.692
+
+10. DATA LEAKAGE SAFEGUARDS
+- Split was performed by sequence_id, not by individual rows.
+- Preprocessing was fitted on training-split rows only.
+- Validation data was transformed, not used for fitting.
+- Test data was transformed, not used for fitting.
+- Test label values were not read for model preparation.
+- Original input CSV files were not modified.
+
+11. OUTPUT FILES
+C:\Users\Hp\Downloads\scripts\results\preprocessing\preprocessed_data.joblib
+C:\Users\Hp\Downloads\scripts\results\preprocessing\preprocessing_summary.txt
+
+12. IMPORTANT NOTES
+- X matrices may be sparse scipy matrices. Check with scipy.sparse.issparse() before converting them.
+- Convert sparse batches to dense arrays only when a model requires dense tensors.
+- Use class_names to interpret model output probability columns.
+- Use test_sequence_ids to align final predictions with test labels.
+- The test labels remain in the original CSV for final evaluation only.

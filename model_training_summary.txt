@@ -1,0 +1,136 @@
+EVENTFLOW - MODEL TRAINING SUMMARY
+===========================================================================
+Created: 2026-11-14 14:40:22
+
+1. DATA
+Training examples: 958,790
+Validation examples: 238,673
+Classes: 14
+Baseline features: 53
+Engineered features: 151
+Device: cpu
+Test labels used: NO
+
+2. MODEL ARCHITECTURES
+A. SGD Logistic Regression
+B. Multilayer Perceptron (MLP)
+C. Gated Recurrent Unit (GRU)
+
+3. HYPERPARAMETER EXPERIMENTS
+Maximum neural epochs: 6
+Early stopping patience: 2
+Logistic regression: alpha regularization values tested.
+MLP: hidden layer sizes, dropout and learning rates tested.
+GRU: hidden sizes, context lengths and learning rates tested.
+
+4. CONTROLLED ABLATIONS
+A. Full engineered features
+B. Without rolling sensor features
+C. Without previous-event features
+D. Without recent-event frequency features
+
+5. EXPERIMENT RESULTS
+Primary metric: Multiclass Log Loss
+Secondary metrics: Accuracy and Macro F1
+
+Rank 1: MLP - 256/128
+Log Loss: 1.61930528
+Accuracy: 0.48665329
+Macro F1: 0.23173771
+Training time (seconds): 129.82
+Best epoch: 6
+
+Rank 2: MLP - 128/64
+Log Loss: 1.62363954
+Accuracy: 0.48612537
+Macro F1: 0.22865016
+Training time (seconds): 68.74
+Best epoch: 6
+
+Rank 3: GRU - Hidden 128 - Context 5
+Log Loss: 1.63100246
+Accuracy: 0.48431117
+Macro F1: 0.23079150
+Training time (seconds): 382.85
+Best epoch: 6
+
+Rank 4: Logistic Regression - Alpha 0.001
+Log Loss: 1.65290457
+Accuracy: 0.48080428
+Macro F1: 0.21861237
+Training time (seconds): 28.59
+Best epoch: Not applicable
+
+Rank 5: Logistic Regression - Engineered
+Log Loss: 1.65376507
+Accuracy: 0.48119393
+Macro F1: 0.22053482
+Training time (seconds): 40.60
+Best epoch: Not applicable
+
+Rank 6: Ablation - Without rolling
+Log Loss: 1.65936769
+Accuracy: 0.47776665
+Macro F1: 0.21747650
+Training time (seconds): 24.62
+Best epoch: Not applicable
+
+Rank 7: Ablation - Without recent_count
+Log Loss: 1.65993657
+Accuracy: 0.47904455
+Macro F1: 0.21707039
+Training time (seconds): 31.86
+Best epoch: Not applicable
+
+Rank 8: Ablation - Without previous_event
+Log Loss: 1.66002228
+Accuracy: 0.47848311
+Macro F1: 0.21699916
+Training time (seconds): 37.30
+Best epoch: Not applicable
+
+Rank 9: GRU - Hidden 64 - Context 3
+Log Loss: 1.66610213
+Accuracy: 0.47526532
+Macro F1: 0.21134807
+Training time (seconds): 170.96
+Best epoch: 6
+
+Rank 10: Logistic Regression - Baseline
+Log Loss: 1.78728832
+Accuracy: 0.44131091
+Macro F1: 0.17942055
+Training time (seconds): 18.96
+Best epoch: Not applicable
+
+Rank 11: Logistic Regression - Alpha 1e-05
+Log Loss: 2.01826040
+Accuracy: 0.48087970
+Macro F1: 0.22103928
+Training time (seconds): 55.53
+Best epoch: Not applicable
+
+6. BEST VALIDATION EXPERIMENT
+Model: MLP - 256/128
+Log Loss: 1.61930528
+
+7. VALIDATION SAFEGUARDS
+- Exact Script 02 split preserved.
+- No training/validation sequence overlap.
+- Preprocessing was fitted in Script 03 on training rows only.
+- Validation data used for model selection.
+- Neural networks use early stopping.
+- GRU windows do not cross sequence boundaries.
+- GRU uses only current and earlier event records.
+- Test labels were not loaded or used.
+
+8. INTERPRETATION
+- Lower Log Loss indicates better probability predictions.
+- Accuracy and macro F1 provide secondary evidence.
+- Ablations isolate selected feature-group contributions.
+- Best validation performance does not establish final test performance.
+- Further error analysis is required in Script 05.
+
+9. OUTPUT FILES
+C:\Users\Hp\Downloads\scripts\results\model_training\trained_models.joblib
+C:\Users\Hp\Downloads\scripts\results\model_training\model_training_summary.txt

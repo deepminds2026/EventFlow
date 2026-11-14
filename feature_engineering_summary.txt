@@ -1,0 +1,71 @@
+EVENTFLOW - FEATURE ENGINEERING SUMMARY
+===========================================================================
+Created: 2026-11-14 14:15:24
+
+1. INPUT DATA
+Training rows: 1,203,963
+Training sequences: 6,500
+Test rows: 138,828
+Test sequences: 900
+Test labels loaded: NO
+
+2. VALIDATION SPLIT
+Method: Stratified sequence-level split
+Training sequences: 5,200
+Validation sequences: 1,300
+Split matches Script 02: YES
+
+3. ENGINEERED FEATURES
+- Previous event types (1, 2 and 3 events back)
+- Time since previous event
+- Log time gap
+- Log event index
+- Log elapsed time
+- Temperature probe difference
+- Vibration probe difference
+- Rolling sensor means over 5 and 10 events
+- Rolling sensor standard deviations over 5 and 10 events
+- Recent event counts over 5 events
+
+4. FEATURE COUNTS
+Original numeric features: 20
+Additional numeric features: 56
+Original categorical features: 5
+Additional categorical features: 3
+Baseline encoded features: 53
+Engineered encoded features: 151
+
+5. MATRIX SHAPES
+Baseline training: 958,790 rows x 53 features
+Baseline validation: 238,673 rows x 53 features
+Baseline test: 900 rows x 53 features
+Engineered training: 958,790 rows x 151 features
+Engineered validation: 238,673 rows x 151 features
+Engineered test: 900 rows x 151 features
+
+6. TARGET CLASSES
+Number of classes: 14
+Classes: COMPONENT_REPLACED, CONTROL_ALERT, COOLING_ACTIVATED, COOLING_FAULT, EMERGENCY_STOP, LOAD_DECREASE, LOAD_INCREASE, MAINTENANCE_CHECK, PRESSURE_WARNING, RECOVERY, ROUTINE_CHECK, SENSOR_RESET, TEMP_WARNING, VIBRATION_WARNING
+
+7. LEAKAGE SAFEGUARDS
+- Temporal features are calculated separately by sequence.
+- Previous-event features use earlier observed rows only.
+- Rolling windows are trailing, not centered.
+- Current event measurements are available at prediction time.
+- No future event types or sensor readings are used.
+- Preprocessing is fitted on training rows only.
+- Validation and test rows are transformed, not fitted.
+- Test labels are not loaded or used.
+
+8. CONTROLLED COMPARISON
+- Baseline matrices from Script 02 are retained.
+- Engineered matrices use the same training and validation rows.
+- Script 04 can compare both feature sets.
+
+9. IMPORTANT NOTE
+Feature engineering does not guarantee better performance.
+Script 04 must evaluate the features using validation log loss.
+
+10. OUTPUT FILES
+C:\Users\Hp\Downloads\scripts\results\feature_engineering\engineered_data.joblib
+C:\Users\Hp\Downloads\scripts\results\feature_engineering\feature_engineering_summary.txt

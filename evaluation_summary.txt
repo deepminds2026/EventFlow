@@ -1,0 +1,117 @@
+EVENTFLOW - FINAL MODEL EVALUATION SUMMARY
+===========================================================================
+Created: 2026-11-14 15:16:30
+
+1. DATA
+Test sequences evaluated: 900
+Complete test history rows: 138828
+Number of event classes: 14
+GRU context length: 5
+GRU test windows: 900
+GRU windows: Final five-event windows from complete test histories
+Test labels used: YES - final evaluation only
+Test labels used for training: NO
+Test labels used for model selection: NO
+Preprocessing: Original training-fitted pipeline from Script 02
+Preprocessing refitted on test data: NO
+
+2. FINAL TEST MODEL COMPARISON
+
+Model: MLP - 256/128
+Test Log Loss: 1.58414090
+Test Accuracy: 0.52777778
+Test Macro F1: 0.22019352
+
+Model: GRU - Hidden 128 - Context 5
+Test Log Loss: 1.59436464
+Test Accuracy: 0.52555556
+Test Macro F1: 0.22059103
+
+Model: tuned - logistic_alpha_0.001
+Test Log Loss: 1.61117713
+Test Accuracy: 0.52444444
+Test Macro F1: 0.20531532
+
+Model: engineered
+Test Log Loss: 1.61361591
+Test Accuracy: 0.52222222
+Test Macro F1: 0.20483420
+
+Model: baseline
+Test Log Loss: 1.75592959
+Test Accuracy: 0.46444444
+Test Macro F1: 0.16845364
+
+Model: tuned - logistic_alpha_1e-05
+Test Log Loss: 1.97016073
+Test Accuracy: 0.52555556
+Test Macro F1: 0.20902671
+
+3. VALIDATION-SELECTED MODEL - FINAL TEST PERFORMANCE
+Model: MLP - 256/128
+Test Log Loss: 1.58414090
+Test Accuracy: 0.52777778
+Test Macro F1: 0.22019352
+Model selection was based on validation results from Script 04.
+The test comparison is for final reporting, not model selection.
+
+4. CLASSIFICATION ANALYSIS
+Correct predictions: 475
+Incorrect predictions: 425
+Classification report: See workbook sheet 'Classification Report'.
+Per-class results: See workbook sheet 'Per Class Performance'.
+Confusion matrix: See workbook sheet 'Confusion Matrix'.
+
+5. GENERATIVE ANALYSIS
+Generative architecture: Event-only GRU
+Training: From scratch
+Generative training data: Training sequences only
+Comparison data: Held-out validation sequences
+Generative training windows: 300000
+Generative epochs: 3
+Generative training time (seconds): 42.18
+Validation prefixes: 40
+Rollouts per prefix: 5
+Generated rollouts: 200
+Events per rollout: 20
+Sampling temperature: 0.9
+
+6. GENERATIVE DIAGNOSTICS
+Event frequency JS divergence: 0.00552150
+Bigram JS divergence: 0.04096874
+Trigram JS divergence: 0.14998352
+Unique rollout sequence ratio: 0.98000000
+Unique generated bigram ratio: 0.04473684
+Unique generated trigram ratio: 0.18555556
+
+7. INTERPRETATION
+Lower test log loss indicates better probability predictions.
+Accuracy measures the proportion of correct top-class predictions.
+Macro F1 gives equal weight to each event class.
+The confusion matrix identifies event classes that are often confused.
+Event frequency divergence compares generated and real event distributions.
+Bigram and trigram divergence compare generated and real event ordering.
+Unique rollout ratios provide evidence about generated sequence diversity.
+Lower distribution divergence indicates closer statistical similarity.
+
+8. GENERATIVE LIMITATIONS
+The event-only generator models event types, not sensor readings or time gaps.
+Generated continuations are stochastic samples, not guaranteed forecasts.
+The generation comparison uses held-out validation histories.
+The test labels are not used in generative training.
+The diversity measures do not prove that every generated sequence is realistic.
+
+9. OUTPUT FILES
+C:\Users\Hp\Downloads\scripts\results\model_evaluation\evaluation_results.xlsx
+C:\Users\Hp\Downloads\scripts\results\model_evaluation\evaluation_summary.txt
+C:\Users\Hp\Downloads\scripts\results\model_evaluation\figures
+
+FIGURES
+01_test_model_comparison.png
+02_confusion_matrix.png
+03_per_class_f1.png
+04_event_frequency_comparison.png
+05_sequence_distribution_diagnostics.png
+06_generation_training_loss.png
+
+END OF SUMMARY
