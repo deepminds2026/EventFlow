@@ -1,7 +1,6 @@
 # EventFlow
 Temporal Event Prediction using Machine Learning and Deep Learning (Logistic Regression, MLP, and GRU).
 # Temporal Event Prediction
-# Temporal Event Prediction
 
 **Project Name:** EventFlow  
 **Course:** AI2210 - Deep Learning & Neural Networks  
